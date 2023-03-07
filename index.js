@@ -5,7 +5,10 @@ const app=express()
 const {connection}=require("./config/db")
 const {todoRouter}=require("./routes/todo.route")
 const {userRouter}=require("./routes/user.routes")
-
+const cors= require("cors");
+app.use(cors({
+    origin:"*";
+}))
 
 app.use(express.json())
 app.use(cookieParser())
