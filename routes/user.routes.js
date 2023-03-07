@@ -1,3 +1,4 @@
+require("dotenv").config();
 
 const {Router}=require("express")
 const userRouter=Router()
@@ -20,15 +21,13 @@ let hashedolder=document?.password
 let answer=bcrypt.compareSync(password,hashedolder)   
 if(answer){
     // generate token // 
- let accesstoken=jwt.sign({emailid:email,userid:document._id},process.env.ACCESSSECURITYKEY,{expiresIn:60*2})   
- let refreshtoken=jwt.sign({emailid:email,userid:document._id},process.env.REFRESHSECURITYKEY,{expiresIn:60*60})   
+ let accesstoken=jwt.sign({emailid:email,userid:document._id},process.env.ACCESSSECURITYKEY,{expiresIn:60});  
+ let refreshtoken=jwt.sign({emailid:email,userid:document._id},process.env.REFRESHSECURITYKEY,{expiresIn:60*5});
   res.cookie("accesstoken",accesstoken,{httpOnly:true})
-return  res.json({message:"login successful",refreshtoken:refreshtoken})
+return  res.json({message:"login successful",refreshtoken:refreshtoken,accesstoken,document});
 } else{
     res.json({message:"wrong password"})
 }   
-
-
 } catch (error) {
     console.log(error)
     res.json({message:"server error",err:error.message})

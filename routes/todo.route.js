@@ -1,3 +1,4 @@
+require("dotenv").config();
 const {Router}=require("express")
 const todoRouter=Router()
 const {Todomodel}=require("../models/todo.model")
