@@ -7,7 +7,7 @@ const {todoRouter}=require("./routes/todo.route")
 const {userRouter}=require("./routes/user.routes")
 const cors= require("cors");
 app.use(cors({
-    origin:"*";
+    origin:"*"
 }))
 
 app.use(express.json())
