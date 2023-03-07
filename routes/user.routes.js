@@ -11,10 +11,10 @@ userRouter.get("/", validator,(req,res)=>{
     res.send({"message":"welcome to userrouter"})
 })
 //-----------------------------login route
-
 userRouter.post("/login",async(req,res)=>{
 let {email,password}=req.body
 let document=await Usermodel.findOne({email})
+console.log(document)
 try {
 let hashedolder=document?.password
 let answer=bcrypt.compareSync(password,hashedolder)   
@@ -92,9 +92,6 @@ res.json({message:"Account created successfully"})
     console.log(error)
     res.statusCode(500).json({message:"something went wrong please try again later"})
 }
-
-
-
 })
 
 
