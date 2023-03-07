@@ -1,5 +1,4 @@
 
-require("dotenv").config();
 const {Logoutmodel}=require("../models/blacklisting.model")
 const jwt=require("jsonwebtoken")
 const validator= async (req,res,next)=>{
