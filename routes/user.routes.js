@@ -1,4 +1,3 @@
-require("dotenv").config();
 
 const {Router}=require("express")
 const userRouter=Router()
@@ -73,15 +72,10 @@ return res.json({message:"request succesded"})
     }
     
     }
-
-
 )
-
-
 userRouter.post("/signup",async(req,res)=>{
 let {email,name,password}=req.body
 let query=await Usermodel.findOne({email})
-
 try {
   if(!query){
 bcrypt.hash(password,5,async(err,hash)=>{
@@ -89,10 +83,7 @@ if(err) throw err
 let usersaved=Usermodel({email,name,password:hash})
 await usersaved.save()
 res.json({message:"Account created successfully"})
-
 })
-
-
   } else{
     return res.json({message:"user already exists"})
   } 
